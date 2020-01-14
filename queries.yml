@@ -1,49 +1,90 @@
 ---
+id: related
 raise_query:
   question: Is <thingA> related to <thingB>?
+  responses:
+  - "Yes"
+  - "No"
 ---
+id: before
 raise_query:
   question: Is <thingA> before <thingB>?
+  responses:
+  - "Yes"
+  - "No"
 ---
+id: better-than
 raise_query:
   question: Is <thingA> better than <thingB>
+  responses:
+  - "Yes"
+  - "No"
 ---
+id: worse-than
 raise_query:
   question: Is <thingA> worse than <thingB>
+  responses:
+  - "Yes"
+  - "No"
 ---
+id: permutation-meaningful
 raise_query:
   question: Is this permutation meaningful <things>
+  responses:
+  - "Yes"
+  - "No"
 ---
+id: want-to-see-next-to
 raise_query:
   question: Describe what you want to see next to <thingA>?
 ---
+id: experience-had
 raise_query:
   question: Tell me an experience you just had
 ---
+id: idea
 raise_query:
   question: Tell me an idea of what you could be doing you've had today?
 ---
+id: money
 raise_query:
   question: How much money do you have in your bank account?
 ---
+id: do-you-think-of
 raise_query:
   question: Do you think of <thingA> while thinking of <thingB>?
+  responses:
+  - "Yes"
+  - "No"
 ---
+id: how-safe
 raise_query:
   question: How safe is <thingA>?
+  responses:
+  - Safe
+  - Kind of safe
+  - Dangerous
 ---
+id: favourite-way-home
 raise_query:
   question: Which is your favourite way home? (say street name)
 ---
+id: would-buy
 raise_query:
   question: Would you ever buy a <thingA>?
+  responses:
+  - "Yes"
+  - "No"
 ---
+id: annoying-today
 raise_query:
   question: What's annoying you today?
 ---
+id: how-much-pay
 raise_query:
   question: How much would you pay for <thingA>?
 ---
+id: why-wont-you
 raise_query:
   question: Why won't you <activityA>?
 
