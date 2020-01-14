@@ -1,0 +1,49 @@
+---
+raise_query:
+  question: Is <thingA> related to <thingB>?
+---
+raise_query:
+  question: Is <thingA> before <thingB>?
+---
+raise_query:
+  question: Is <thingA> better than <thingB>
+---
+raise_query:
+  question: Is <thingA> worse than <thingB>
+---
+raise_query:
+  question: Is this permutation meaningful <things>
+---
+raise_query:
+  question: Describe what you want to see next to <thingA>?
+---
+raise_query:
+  question: Tell me an experience you just had
+---
+raise_query:
+  question: Tell me an idea of what you could be doing you've had today?
+---
+raise_query:
+  question: How much money do you have in your bank account?
+---
+raise_query:
+  question: Do you think of <thingA> while thinking of <thingB>?
+---
+raise_query:
+  question: How safe is <thingA>?
+---
+raise_query:
+  question: Which is your favourite way home? (say street name)
+---
+raise_query:
+  question: Would you ever buy a <thingA>?
+---
+raise_query:
+  question: What's annoying you today?
+---
+raise_query:
+  question: How much would you pay for <thingA>?
+---
+raise_query:
+  question: Why won't you <activityA>?
+
