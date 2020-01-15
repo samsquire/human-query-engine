@@ -29,6 +29,7 @@
     {{question}}
     </p>
     <form method="post" action="submit">
+    <input name="generated_id" type="hidden" value="{{ generated_id }}"/>
     <input name="question_id" type="hidden" value="{{ question_id }}"/>
     <select name="response">
     {% for response in responses %}

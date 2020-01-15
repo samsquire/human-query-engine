@@ -2,6 +2,11 @@
 id: related
 raise_query:
   question: Is <thingA> related to <thingB>?
+  queries:
+    - name: thingA
+      search: thing
+    - name: thingB
+      search: thing
   responses:
   - "Yes"
   - "No"
@@ -9,6 +14,11 @@ raise_query:
 id: before
 raise_query:
   question: Is <thingA> before <thingB>?
+  queries:
+    - name: thingA
+      search: thing
+    - name: thingB
+      search: thing
   responses:
   - "Yes"
   - "No"
@@ -16,6 +26,11 @@ raise_query:
 id: better-than
 raise_query:
   question: Is <thingA> better than <thingB>
+  queries:
+    - name: thingA
+      search: thing
+    - name: thingB
+      search: thing
   responses:
   - "Yes"
   - "No"
@@ -23,6 +38,11 @@ raise_query:
 id: worse-than
 raise_query:
   question: Is <thingA> worse than <thingB>
+  queries:
+    - name: thingA
+      search: thing
+    - name: thingB
+      search: thing
   responses:
   - "Yes"
   - "No"
@@ -30,6 +50,9 @@ raise_query:
 id: permutation-meaningful
 raise_query:
   question: Is this permutation meaningful <things>
+  queries:
+    - name: things
+      search: thing
   responses:
   - "Yes"
   - "No"
@@ -37,6 +60,11 @@ raise_query:
 id: want-to-see-next-to
 raise_query:
   question: Describe what you want to see next to <thingA>?
+  queries:
+    - name: thingA
+      search: thing
+    - name: thingB
+      search: thing
 ---
 id: experience-had
 raise_query:
@@ -53,6 +81,11 @@ raise_query:
 id: do-you-think-of
 raise_query:
   question: Do you think of <thingA> while thinking of <thingB>?
+  queries:
+    - name: thingA
+      search: thing
+    - name: thingB
+      search: thing
   responses:
   - "Yes"
   - "No"
@@ -60,6 +93,11 @@ raise_query:
 id: how-safe
 raise_query:
   question: How safe is <thingA>?
+  queries:
+    - name: thingA
+      search: thing
+    - name: thingB
+      search: thing
   responses:
   - Safe
   - Kind of safe
@@ -72,6 +110,9 @@ raise_query:
 id: would-buy
 raise_query:
   question: Would you ever buy a <thingA>?
+  queries:
+    - name: thingA
+      search: thing
   responses:
   - "Yes"
   - "No"
@@ -82,9 +123,15 @@ raise_query:
 ---
 id: how-much-pay
 raise_query:
+  queries:
+    - name: thingA
+      search: thing
   question: How much would you pay for <thingA>?
 ---
 id: why-wont-you
 raise_query:
   question: Why won't you <activityA>?
+  queries:
+    - name: activityA
+      search: activity
 
