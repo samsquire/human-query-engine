@@ -67,7 +67,7 @@ def hello():
             definitions.append(found_definition)
 
     generated_id = uuid.uuid1()
-    open("data/{}".format(generated_id), "w").write(yaml.dump({"question": question, "definitions": definitions }))
+    open("/tmp/{}".format(generated_id), "w").write(yaml.dump({"question": question, "definitions": definitions }))
 
     question_id = data[query]["id"]
     response = make_response(render_template('index.html', user_email=user_email, signed_in=signed_in, generated_id=generated_id, definitions=definitions, question=question, question_id=question_id, responses=query_data.get("responses", [])))
@@ -96,7 +96,7 @@ def submit():
         os.makedirs(user_data_path)
     except FileExistsError as e:
         pass
-    question_data = yaml.safe_load(open("data/{}".format(request.form["generated_id"])).read())
+    question_data = yaml.safe_load(open("/tmp/{}".format(request.form["generated_id"])).read())
     open(os.path.join(user_data_path, "{}.{}.yml".format(question, time.time())), "w").write(yaml.dump({"question_id": question, "question": question_data, "answer": request.form["answer"]}, default_flow_style=False))
      
     return redirect("/", code=302)

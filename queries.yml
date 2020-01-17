@@ -109,7 +109,7 @@ raise_query:
 ---
 id: would-buy
 raise_query:
-  question: Would you ever buy a <thingA>?
+  question: Would you ever buy <thingA>?
   queries:
     - name: thingA
       search: thing
@@ -134,4 +134,21 @@ raise_query:
   queries:
     - name: activityA
       search: activity
-
+---
+id: sefirot-relationship
+raise_query:
+  question: How does <thing> relate to <sefirot>?
+  queries:
+    - name: thing
+      search: thing
+    - name: sefirot
+      search: sefirot
+---
+id: two-sefirot-interaction
+raise_query:
+  question: How are <sefirotA> interacting with <sefirotB> today?
+  queries:
+    - name: sefirotA
+      search: sefirot
+    - name: sefirotB
+      search: sefirot
