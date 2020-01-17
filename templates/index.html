@@ -25,23 +25,25 @@
       Answer a question
     </h2>
     All data is publicly viewable @ https://github.com/samsquire/human-query-engine
-    <p class="important">
-    {{question}}
-    </p>
-    <form method="post" action="submit">
-    <input name="generated_id" type="hidden" value="{{ generated_id }}"/>
-    <input name="question_id" type="hidden" value="{{ question_id }}"/>
-    <select name="response">
-    {% for response in responses %}
-    <option value="{{response}}">{{response}}</option>
-    {% endfor %}
-    </select>
-    Or...
-    <div>
-    <textarea name="answer"></textarea>
-    </div>
-    <button type="submit">Submit</button>
-    </form>
+	{% for question in questions %}
+	    <p>
+	    {{question["question"]}}
+	    </p>
+	    <form method="post" action="submit">
+	    <input name="generated_id" type="hidden" value="{{ question["generated_id"] }}"/>
+	    <input name="question_id" type="hidden" value="{{ question["question_id"] }}"/>
+	    <select name="response">
+	    {% for response in question["responses"] %}
+	    <option value="{{response}}">{{response}}</option>
+	    {% endfor %}
+	    </select>
+	    Or...
+	    <div>
+	    <textarea name="answer"></textarea>
+	    </div>
+	    <button type="submit">Submit</button>
+	    </form>
+	{% endfor %}
     {% endif %}
  
 {% endblock %}

@@ -7,6 +7,7 @@ import random
 import re
 import uuid
 import hashlib
+import collections
 random.seed()
 from random import randrange
 
@@ -45,32 +46,46 @@ def check_signed_in(from_cookie=False):
     return signed_in, username, user_email, email, login
 
 @app.route('/')
-def hello():
+def index():
     signed_in, username, user_email, email_token, login_token = check_signed_in()
     data = load_queries()
-    query = randrange(len(data)) - 1
-    query_data = data[query]["raise_query"]
-    question = query_data["question"]
-    pattern = re.compile(r"<([a-zA-Z]*)>") 
-    definitions = []
-    for substitution in pattern.findall(question):
-        print("Need a substitution for " + substitution)
-        found_definition = None
-        for definition in query_data["queries"]:
-            if substitution == definition["name"]:  
-                found_definition = definition
-        if found_definition:
-            options = yaml.safe_load(open("data/{}.yml".format(found_definition["search"])).read())
-            picked_option = randrange(len(options)) - 1
-            question = question.replace("<" + substitution + ">", options[picked_option])
-            found_definition["value"] = options[picked_option]
-            definitions.append(found_definition)
+    questions = []
 
-    generated_id = uuid.uuid1()
-    open("/tmp/{}".format(generated_id), "w").write(yaml.dump({"question": question, "definitions": definitions }))
+    for i in range(0, 25):
+        query = randrange(len(data)) - 1
+        query_data = data[query]["raise_query"]
+        question = query_data["question"]
+        pattern = re.compile(r"<([a-zA-Z]*)>") 
+        definitions = []
+        picked = collections.defaultdict(list)
+        for substitution in pattern.findall(question):
+            found_definition = None
+            for definition in query_data["queries"]:
+                if substitution == definition["name"]:  
+                    found_definition = definition
+            if found_definition:
+                options = yaml.safe_load(open("data/{}.yml".format(found_definition["file"])).read())
+                picked_option = randrange(len(options)) - 1
+                while picked_option in picked[found_definition["file"]]:
+                    picked_option = randrange(len(options)) - 1
 
-    question_id = data[query]["id"]
-    response = make_response(render_template('index.html', user_email=user_email, signed_in=signed_in, generated_id=generated_id, definitions=definitions, question=question, question_id=question_id, responses=query_data.get("responses", [])))
+                picked[found_definition["file"]].append(picked_option) 
+                question = question.replace("<" + substitution + ">", options[picked_option])
+                found_definition["value"] = options[picked_option]
+                definitions.append(found_definition)
+
+        generated_id = uuid.uuid1()
+        open("/tmp/{}".format(generated_id), "w").write(yaml.dump({"question": question, "definitions": definitions }))
+
+        question_id = data[query]["id"]
+        questions.append({
+            "question_id": question_id, 
+            "question": question,
+            "definitions": definitions, 
+            "generated_id": generated_id,
+            "responses": query_data.get("responses", [])
+            })
+    response = make_response(render_template('index.html', user_email=user_email, signed_in=signed_in, generated_id=generated_id, questions=questions))
     if email_token:
         response.set_cookie("email", email_token) 
     if login_token:
@@ -97,7 +112,20 @@ def submit():
     except FileExistsError as e:
         pass
     question_data = yaml.safe_load(open("/tmp/{}".format(request.form["generated_id"])).read())
-    open(os.path.join(user_data_path, "{}.{}.yml".format(question, time.time())), "w").write(yaml.dump({"question_id": question, "question": question_data, "answer": request.form["answer"]}, default_flow_style=False))
+    answer_file = os.path.join(user_data_path, "answers.yml")
+    if os.path.isfile(answer_file):
+        answer_data = yaml.safe_load(open(answer_file).read())
+    else:
+        answer_data = {"answers": []}
+
+    answer_data["answers"].append({
+                "question_id": question,
+                "question": question_data,
+                "selection": request.form.get("response", ""),
+                "answer": request.form["answer"]})
+    open(answer_file, "w").write(
+            yaml.dump(answer_data, default_flow_style=False)
+            )
      
     return redirect("/", code=302)
 

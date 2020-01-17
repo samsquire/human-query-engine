@@ -4,9 +4,9 @@ raise_query:
   question: Is <thingA> related to <thingB>?
   queries:
     - name: thingA
-      search: thing
+      file: thing
     - name: thingB
-      search: thing
+      file: thing
   responses:
   - "Yes"
   - "No"
@@ -16,9 +16,9 @@ raise_query:
   question: Is <thingA> before <thingB>?
   queries:
     - name: thingA
-      search: thing
+      file: thing
     - name: thingB
-      search: thing
+      file: thing
   responses:
   - "Yes"
   - "No"
@@ -28,9 +28,9 @@ raise_query:
   question: Is <thingA> better than <thingB>
   queries:
     - name: thingA
-      search: thing
+      file: thing
     - name: thingB
-      search: thing
+      file: thing
   responses:
   - "Yes"
   - "No"
@@ -40,9 +40,9 @@ raise_query:
   question: Is <thingA> worse than <thingB>
   queries:
     - name: thingA
-      search: thing
+      file: thing
     - name: thingB
-      search: thing
+      file: thing
   responses:
   - "Yes"
   - "No"
@@ -52,7 +52,7 @@ raise_query:
   question: Is this permutation meaningful <things>
   queries:
     - name: things
-      search: thing
+      file: thing
   responses:
   - "Yes"
   - "No"
@@ -62,9 +62,9 @@ raise_query:
   question: Describe what you want to see next to <thingA>?
   queries:
     - name: thingA
-      search: thing
+      file: thing
     - name: thingB
-      search: thing
+      file: thing
 ---
 id: experience-had
 raise_query:
@@ -83,9 +83,9 @@ raise_query:
   question: Do you think of <thingA> while thinking of <thingB>?
   queries:
     - name: thingA
-      search: thing
+      file: thing
     - name: thingB
-      search: thing
+      file: thing
   responses:
   - "Yes"
   - "No"
@@ -95,9 +95,9 @@ raise_query:
   question: How safe is <thingA>?
   queries:
     - name: thingA
-      search: thing
+      file: thing
     - name: thingB
-      search: thing
+      file: thing
   responses:
   - Safe
   - Kind of safe
@@ -112,7 +112,7 @@ raise_query:
   question: Would you ever buy <thingA>?
   queries:
     - name: thingA
-      search: thing
+      file: thing
   responses:
   - "Yes"
   - "No"
@@ -125,7 +125,7 @@ id: how-much-pay
 raise_query:
   queries:
     - name: thingA
-      search: thing
+      file: thing
   question: How much would you pay for <thingA>?
 ---
 id: why-wont-you
@@ -133,22 +133,22 @@ raise_query:
   question: Why won't you <activityA>?
   queries:
     - name: activityA
-      search: activity
+      file: activity
 ---
 id: sefirot-relationship
 raise_query:
   question: How does <thing> relate to <sefirot>?
   queries:
     - name: thing
-      search: thing
+      file: thing
     - name: sefirot
-      search: sefirot
+      file: sefirot
 ---
 id: two-sefirot-interaction
 raise_query:
   question: How are <sefirotA> interacting with <sefirotB> today?
   queries:
     - name: sefirotA
-      search: sefirot
+      file: sefirot
     - name: sefirotB
-      search: sefirot
+      file: sefirot
